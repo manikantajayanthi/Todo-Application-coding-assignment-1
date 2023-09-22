@@ -100,8 +100,8 @@ const requestBodyCheck = async (request, response, next) => {
   request.todoId = todoId;
 
   if (priority !== undefined) {
-    priorityList = ["HIGH", "MEDIUM", "LOW"];
-    priorityInclude = priorityList.includes(priority);
+    const priorityList = ["HIGH", "MEDIUM", "LOW"];
+    const priorityInclude = priorityList.includes(priority);
     if (priorityInclude === true) {
       request.priority = priority;
     } else {
@@ -112,8 +112,8 @@ const requestBodyCheck = async (request, response, next) => {
   }
 
   if (status !== undefined) {
-    statusList = ["TO DO", "IN PROGRESS", "DONE"];
-    statusInclude = statusList.includes(status);
+    const statusList = ["TO DO", "IN PROGRESS", "DONE"];
+    const statusInclude = statusList.includes(status);
     if (statusInclude === true) {
       request.status = status;
     } else {
@@ -122,8 +122,8 @@ const requestBodyCheck = async (request, response, next) => {
     }
   }
   if (category !== undefined) {
-    categoryArray = ["WORK", "HOME", "LEARNING"];
-    includeCategoryValue = categoryArray.includes(category);
+    const categoryArray = ["WORK", "HOME", "LEARNING"];
+    const includeCategoryValue = categoryArray.includes(category);
     if (includeCategoryValue === true) {
       request.category = category;
     } else {
@@ -138,11 +138,6 @@ const requestBodyCheck = async (request, response, next) => {
       const myDate = new Date(dueDate);
       const formattedDate = format(new Date(dueDate), "yyyy-MM-dd");
       const result = toDate(new Date(formattedDate));
-      //   const result = toDate(
-      //     new Date(
-      //       `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}`
-      //     )
-      //   );
       const dateValid = await isValid(result);
       if (dateValid === true) {
         request.dueDate = formattedDate;
