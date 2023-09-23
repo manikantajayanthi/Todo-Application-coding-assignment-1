@@ -119,6 +119,7 @@ const requestBodyCheck = async (request, response, next) => {
     } else {
       response.status(400);
       response.send("Invalid Todo Status");
+      return;
     }
   }
   if (category !== undefined) {
@@ -144,6 +145,7 @@ const requestBodyCheck = async (request, response, next) => {
       } else {
         response.status(400);
         response.send("Invalid Due Date");
+        return;
       }
     } catch (error) {
       response.status(400);
@@ -223,7 +225,7 @@ app.post("/todos/", requestBodyCheck, async (request, response) => {
 
 app.put("/todos/:todoId/", requestBodyCheck, async (request, response) => {
   const { todoId } = request;
-  const { priority, todo, status, dueDate, category } = request;
+  const { id, priority, todo, status, dueDate, category } = request;
   console.log(priority, todo, status, dueDate, category);
   switch (true) {
     case status !== undefined:
